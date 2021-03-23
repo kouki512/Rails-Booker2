@@ -10,11 +10,14 @@
           <li><a class="fas fa-home nav-link text-light" href="/users/28562"> Home</a></li>
           <% if user_signed_in? %>
           <li><a class="fas fa-users nav-link text-light" href="/users"> Users</a></li>
-          <% else %>
-          <li><a class="fas fa-users nav-link text-light" href="/about"> About</a></li>
-          <% end %>
           <li><a class="fas fa-book-open nav-link text-light" href="/books"> Books</a></li>
           <li><a class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+          <% else %>
+          <li><a class="fas fa-users nav-link text-light" href="/about"> About</a></li>
+          <li><a class="fas fa-book-open nav-link text-light" href="/books"> Books</a></li>
+          <a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in"> login</a>
+          <% end %>
+          
         </ul>
       </div>
     </div>
