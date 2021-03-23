@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :books
   resources :users
+  get 'about' => "homes#about" 
+  
 end
