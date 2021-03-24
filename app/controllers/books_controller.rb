@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :move_to_signed_in
   
   def index
     @books = Book.all
@@ -10,8 +11,15 @@ class BooksController < ApplicationController
   def create
     @new_book = Book.new(book_params)
     @new_book.user_id = current_user.id
-    @new_book.save
-    redirect_to books_path
+    if @new_book.save
+      flash[:success] =  "You have created book successfully"
+      redirect_to books_path
+    else
+      @books = Book.all
+      @user_name= User.find_by(params[:name])
+      @user_intro= User.find_by(params[:introduction])
+      render 'index'
+    end
   end
 
   def show
@@ -23,14 +31,21 @@ class BooksController < ApplicationController
   end
   
   def edit
-    @book = Book.find(params[:id])
-    
+     @book = Book.find(params[:id])
+    unless @book.user_id == current_user.id
+      redirect_to books_path
+    end
   end
   
   def update
+    
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to book_path(@book)
+    if @book.update(book_params)
+      flash[:success] = "You have updated book successfully."
+      redirect_to book_path(@book)
+    else
+      render 'edit'
+    end
   end
   
   def destroy
@@ -43,5 +58,11 @@ class BooksController < ApplicationController
   private
   def book_params
       params.require(:book).permit(:title, :body)
+  end
+  def move_to_signed_in
+    unless user_signed_in?
+      #サインインしていないユーザーはログインページが表示される
+      redirect_to  '/users/sigh_in'
+    end
   end
 end

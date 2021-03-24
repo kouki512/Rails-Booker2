@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+   before_action :move_to_signed_in
+   
   def index
     @users = User.all
     @new_book= Book.new
@@ -16,11 +17,15 @@ class UsersController < ApplicationController
   end
   
   def edit
-    # @user = User.find(params[:id])
+    unless @user.user_id == current_user.id
+      redirect_to users_path
+    end
   end
   
   def update
-  
+  @user = User.find(params[:id])
+  @user.update(user_params)
+  redirect_to user_path(@user)
   end
   
   private
@@ -28,5 +33,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:introduction,:prifile_image)
   end
   
-  
+  def move_to_signed_in
+    unless user_signed_in?
+      #サインインしていないユーザーはログインページが表示される
+      redirect_to  '/users/sign_in'
+    end
+  end
 end

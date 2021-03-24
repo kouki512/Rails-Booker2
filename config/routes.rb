@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :users
   get 'about' => "homes#about" 
   post 'books/:id/edit' => 'books#update'
+  post 'users/:id/edit' => 'users#update'
+  
 end
