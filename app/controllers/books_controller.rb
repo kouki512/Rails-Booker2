@@ -4,8 +4,9 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @new_book= Book.new
-     @user_name= User.find_by(params[:name])
-    @user_intro= User.find_by(params[:introduction])
+    @user= User.find(params[:id])
+   #@user= User.find_by(params[:name])
+   #@user= User.find_by(params[:introduction])
   end
 
   def create
@@ -16,22 +17,24 @@ class BooksController < ApplicationController
       redirect_to books_path
     else
       @books = Book.all
-      @user_name= User.find_by(params[:name])
-      @user_intro= User.find_by(params[:introduction])
+      @user = User.find(params[:id])
+      #@user_name= User.find_by(params[:name])
+     # @user_intro= User.find_by(params[:introduction])
       render 'index'
     end
   end
 
   def show
       @new_book = Book.new
-    @book = Book.find(params[:id])
-   @user = @book.user
-    @user_name= User.find_by(params[:name])
-    @user_intro= User.find_by(params[:introduction])
+      @book = Book.find(params[:id])
+      @user = @book.user
+      #@user= User.find(params[:id])
+    # @user_name= User.find_by(params[:name])
+    # @user_intro= User.find_by(params[:introduction])
   end
   
   def edit
-     @book = Book.find(params[:id])
+    @book = Book.find(params[:id])
     unless @book.user_id == current_user.id
       redirect_to books_path
     end

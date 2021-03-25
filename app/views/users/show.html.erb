@@ -19,7 +19,7 @@
           <tr>
             <td>
               <%= link_to book_path(book.id) do %>
-                <%= attachment_image_tag @user, :profile_image_id, :fill, 40, 40, format: 'jpeg', fallback: "no_image-icon.jpg" %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image-icon.jpg" %>
               <% end %>
 
             </td>
