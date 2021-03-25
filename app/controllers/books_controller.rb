@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @new_book= Book.new
-    @user= User.find(params[:id])
+    @user= current_user
    #@user= User.find_by(params[:name])
    #@user= User.find_by(params[:introduction])
   end
@@ -17,7 +17,7 @@ class BooksController < ApplicationController
       redirect_to books_path
     else
       @books = Book.all
-      @user = User.find(params[:id])
+      @user = current_user
       #@user_name= User.find_by(params[:name])
      # @user_intro= User.find_by(params[:introduction])
       render 'index'

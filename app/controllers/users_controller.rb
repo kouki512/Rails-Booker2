@@ -2,7 +2,7 @@ class UsersController < ApplicationController
    before_action :move_to_signed_in
    
   def index
-    @user= User.find(params[:id])
+    @user= current_user
     @users = User.all
     @new_book= Book.new
     #@user_name= User.find_by(params[:id])
