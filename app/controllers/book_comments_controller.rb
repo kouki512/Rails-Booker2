@@ -5,24 +5,24 @@ class BookCommentsController < ApplicationController
      @comment.book_id = book.id
     if @comment.save
       flash[:success] = "Successfully commented!"
-      redirect_to book_path(book)
+      redirect_back(fallback_location: root_path)
     else
     flash[:notice] = "Failed to comment..."
-    redirect_to book_path(book)  
+    redirect_back(fallback_location: root_path)
     end
    end
    def destroy
-     book = Book.find(params[:id])
-     book_comment = BookComment.find_by(book_id: params[:book_id])
-     book_comment.destroy
-     redirect_to book_path(book)
+     @book = Book.find(params[:book_id])
+     @comment = @book.book_comments.find(params[:id])
+     @comment.destroy
+     redirect_back(fallback_location: root_path)
    end
-  
+
   private
-  
+
   def book_comment_params
     params.require(:book_comment).permit(:comment)
-    
+
   end
-  
+
 end
