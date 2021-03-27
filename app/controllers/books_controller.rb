@@ -5,7 +5,7 @@ class BooksController < ApplicationController
     @books = Book.all
     @new_book= Book.new
     @user= current_user
-    
+    @favorite = Favorite.new
    #@user= User.find_by(params[:name])
    #@user= User.find_by(params[:introduction])
   end

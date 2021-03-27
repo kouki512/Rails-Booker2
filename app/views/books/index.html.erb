@@ -6,7 +6,7 @@
     <ul>
     <li><%= message %></li>
     </ul>
-      
+
     <% end %>
   <% end %>
   </div>
@@ -14,11 +14,11 @@
    <div class="col-md-3">
 <%= render 'users/user_info', user: @user, new_book: @new_book %>
     </div>
-     
+
       <!--<a class="btn btn-outline-secondary btn-block fas fa-user-cog " href="/users/:id/edit"></a>-->
-      
-     
-    
+
+
+
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
@@ -44,6 +44,25 @@
               <% end %>
             </td>
             <td><%= book.body %></td>
+
+            <td>
+              <% if book.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to book_favorites_path(book), method: :delete do %>
+                  <i class="fas fa-heart"></i>
+                  <%= book.favorites.count %>
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to book_favorites_path(book), method: :post do %>
+                  <i class="far fa-heart"></i> 
+                  <%= book.favorites.count %>
+                  <% end %>
+                </p>
+             <% end %>
+            </td>
+
           </tr>
           <% end %>
         </tbody>
