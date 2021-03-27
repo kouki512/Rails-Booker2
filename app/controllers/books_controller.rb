@@ -30,6 +30,8 @@ class BooksController < ApplicationController
       @new_book = Book.new
       @book = Book.find(params[:id])
       @user = @book.user
+      @current_user = current_user
+      @book_comment = BookComment.new
       #@user= User.find(params[:id])
     # @user_name= User.find_by(params[:name])
     # @user_intro= User.find_by(params[:introduction])
