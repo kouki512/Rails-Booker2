@@ -7,8 +7,8 @@ class BookCommentsController < ApplicationController
       flash[:success] = "Successfully commented!"
       redirect_back(fallback_location: root_path)
     else
-    flash[:notice] = "Failed to comment..."
-    redirect_back(fallback_location: root_path)
+      flash[:notice] = "Failed to comment..."
+      redirect_back(fallback_location: root_path)
     end
    end
    def destroy
