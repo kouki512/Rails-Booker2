@@ -32,6 +32,7 @@
               <% end %>
             </td>
             <td><%= book.body %></td>
+            <td><p>コメント数：<%= book.book_comments.count %></p></td>
             <td><% if book.favorited_by?(current_user) %>
                 <p>
                   <%= link_to book_favorites_path(book), method: :delete do %>
@@ -42,10 +43,10 @@
               <% else %>
                 <p>
                   <%= link_to book_favorites_path(book), method: :post do %>
-                    <i class="fa fa-heart" ></i> 
+                    <i class="fa fa-heart" ></i>
                     <%= book.favorites.count %>
                   <% end %>
-                  
+
                 </p>
              <% end %></td>
           </tr>
