@@ -1,0 +1,27 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.create-book{
+  color:#fff;
+  background-color: #28a745;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 10px;
+  border-radius: 0.25em;
+}
+.user-name,.user-intro{
+  width: 100%;
+  padding: 0.375em 0.75em;
+  font-weight: 400;
+  line-height: 1.5;
+  color:#495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.edit-input{
+  color:#fff;
+  background-color: #6c757d;
+  border: none;
+  padding: 0.375em 0.75em;
+  border-radius: 0.25em;
+}
